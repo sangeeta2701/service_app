@@ -106,23 +106,28 @@ class _HomePageState extends State<HomePage> {
                               color: appUiDarkColor),
                           controller: numberController,
                           keyboardType: TextInputType.text,
+                          textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
-                            hintText: "HRXXXX",
-                            hintStyle: TextStyle(
-                                fontSize: 16,
-                                color: appUiGreyColor,
-                                fontWeight: FontWeight.w400),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4),
-                              borderSide:
-                                  BorderSide(color: appUiGreyColor, width: 1),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4),
-                              borderSide:
-                                  BorderSide(color: appUiGreyColor, width: 1),
-                            ),
-                          ),
+                              hintText: "HRXXXX",
+                              hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  color: appUiGreyColor,
+                                  fontWeight: FontWeight.w400),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                borderSide:
+                                    BorderSide(color: appUiGreyColor, width: 1),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                borderSide:
+                                    BorderSide(color: appUiGreyColor, width: 1),
+                              ),
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    numberController.clear();
+                                  },
+                                  icon: Icon(Icons.clear))),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Please Enter Vehicle Number";
