@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:service_app/Screens/vehicle_page.dart';
 import 'package:service_app/constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Container(
-                height: 50,
+                height: 60,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: appUiThemeColor,
@@ -157,21 +158,33 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),
-                        child: Container(
-                          height: 45,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: appUiLightColor,
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: appUiGreyColor, width: 1),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "New Service",
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  color: appUiDarkColor),
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => VehiclePage(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            height: 45,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: appUiLightColor,
+                              borderRadius: BorderRadius.circular(8),
+                              border:
+                                  Border.all(color: appUiGreyColor, width: 1),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "New Service",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    color: appUiDarkColor),
+                              ),
                             ),
                           ),
                         ),
@@ -186,6 +199,131 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.w500,
                                 color: appUiDarkColor),
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              behavior: HitTestBehavior.translucent,
+                              onTap: () {},
+                              child: Container(
+                                height: 160,
+                                width: 120,
+                                decoration: BoxDecoration(
+                                  color: appUiContainerColor,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                      color: appUiGreyColor, width: 1),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 12.0, horizontal: 15),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "Vehicles",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: appUiDarkColor),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 10.0),
+                                        child: Image(
+                                          width: 100,
+                                          height: 100,
+                                          image: AssetImage(
+                                              "assets/images/img2.png"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              behavior: HitTestBehavior.translucent,
+                              onTap: () {},
+                              child: Container(
+                                height: 160,
+                                width: 120,
+                                decoration: BoxDecoration(
+                                  color: appUiContainerColor,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                      color: appUiGreyColor, width: 1),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 12.0, horizontal: 15),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "Services",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: appUiDarkColor),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 10.0),
+                                        child: Image(
+                                          width: 100,
+                                          height: 100,
+                                          image: AssetImage(
+                                              "assets/images/img3.png"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              behavior: HitTestBehavior.translucent,
+                              onTap: () {},
+                              child: Container(
+                                height: 160,
+                                width: 120,
+                                decoration: BoxDecoration(
+                                  color: appUiContainerColor,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                      color: appUiGreyColor, width: 1),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 12.0, horizontal: 15),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "Bills",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: appUiDarkColor),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 10.0),
+                                        child: Image(
+                                          width: 100,
+                                          height: 100,
+                                          image: AssetImage(
+                                              "assets/images/img4.png"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
