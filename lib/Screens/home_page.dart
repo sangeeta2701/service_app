@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:service_app/Screens/search_page.dart';
 import 'package:service_app/Screens/vehicle_page.dart';
 import 'package:service_app/constants.dart';
 
@@ -143,20 +144,31 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),
-                        child: Container(
-                          height: 45,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: appUiThemeColor,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Search",
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  color: appUiLightColor),
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => VehiclePage(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            height: 45,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: appUiThemeColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Search",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    color: appUiLightColor),
+                              ),
                             ),
                           ),
                         ),
@@ -169,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => VehiclePage(),
+                                builder: (context) => SearchPage(),
                               ),
                             );
                           },
