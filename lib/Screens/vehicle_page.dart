@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:service_app/Screens/search_page.dart';
 import 'package:service_app/constants.dart';
 
 class VehiclePage extends StatefulWidget {
@@ -65,7 +66,7 @@ class _VehiclePageState extends State<VehiclePage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
                     child: Container(
-                      height: 100,
+                      height: 80,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         border: Border.all(color: appUiDarkColor, width: 4),
@@ -77,7 +78,7 @@ class _VehiclePageState extends State<VehiclePage> {
                           Text(
                             "HR29AD1387",
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 32,
                               fontWeight: FontWeight.w600,
                               color: appUiDarkColor,
                             ),
@@ -99,12 +100,12 @@ class _VehiclePageState extends State<VehiclePage> {
                     child: GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => VehiclePage(),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SearchPage(),
+                          ),
+                        );
                       },
                       child: Container(
                         height: 45,
