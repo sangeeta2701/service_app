@@ -151,7 +151,8 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => VehiclePage(),
+                                builder: (context) =>
+                                    VehiclePage(num: numberController.text),
                               ),
                             );
                             // Navigator.push(

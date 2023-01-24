@@ -3,7 +3,8 @@ import 'package:service_app/Screens/search_page.dart';
 import 'package:service_app/constants.dart';
 
 class VehiclePage extends StatefulWidget {
-  const VehiclePage({Key? key}) : super(key: key);
+  const VehiclePage({Key? key, required this.num}) : super(key: key);
+  final String num;
 
   @override
   State<VehiclePage> createState() => _VehiclePageState();
@@ -76,7 +77,8 @@ class _VehiclePageState extends State<VehiclePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            "HR29AD1387",
+                            widget.num,
+                            // "HR29AD1387",
                             style: TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.w600,
