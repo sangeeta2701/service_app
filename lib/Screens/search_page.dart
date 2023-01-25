@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:service_app/constants.dart';
 
 class SearchPage extends StatefulWidget {
@@ -10,42 +11,9 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  FocusNode? focusNode1;
-  FocusNode? focusNode2;
-  FocusNode? focusNode3;
-  FocusNode? focusNode4;
-  FocusNode? focusNode5;
-  FocusNode? focusNode6;
-  FocusNode? focusNode7;
-  FocusNode? focusNode8;
   String? type;
 
-  @override
-  void initState() {
-    focusNode1 = FocusNode();
-    focusNode2 = FocusNode();
-    focusNode3 = FocusNode();
-    focusNode4 = FocusNode();
-    focusNode5 = FocusNode();
-    focusNode6 = FocusNode();
-    focusNode7 = FocusNode();
-    focusNode8 = FocusNode();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    focusNode1!.dispose();
-    focusNode2!.dispose();
-    focusNode3!.dispose();
-    focusNode4!.dispose();
-    focusNode5!.dispose();
-    focusNode6!.dispose();
-    focusNode7!.dispose();
-    focusNode8!.dispose();
-
-    super.dispose();
-  }
+  TextEditingController _dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -278,6 +246,7 @@ class _SearchPageState extends State<SearchPage> {
                               height: 50,
                               width: double.infinity,
                               child: TextFormField(
+                                controller: _dateController,
                                 style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -293,6 +262,24 @@ class _SearchPageState extends State<SearchPage> {
                                       fontWeight: FontWeight.w400),
                                   border: OutlineInputBorder(),
                                 ),
+                                onTap: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(1950),
+                                      lastDate: DateTime(2100));
+
+                                  if (pickedDate != null) {
+                                    print(pickedDate);
+                                    String formattedDate =
+                                        DateFormat('yyyy-MM-dd')
+                                            .format(pickedDate);
+                                    print(formattedDate);
+                                    setState(() {
+                                      _dateController.text = formattedDate;
+                                    });
+                                  } else {}
+                                },
                                 // validator: (value) {
                                 //   if (value!.isEmpty) {
                                 //     return "Please Enter Vehicle Number";

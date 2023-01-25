@@ -115,16 +115,17 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 16,
                                   color: appUiGreyColor,
                                   fontWeight: FontWeight.w400),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(4),
-                                borderSide:
-                                    BorderSide(color: appUiGreyColor, width: 1),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(4),
-                                borderSide:
-                                    BorderSide(color: appUiGreyColor, width: 1),
-                              ),
+                              border: OutlineInputBorder(),
+                              // enabledBorder: OutlineInputBorder(
+                              //   borderRadius: BorderRadius.circular(4),
+                              //   borderSide:
+                              //       BorderSide(color: appUiGreyColor, width: 1),
+                              // ),
+                              // focusedBorder: OutlineInputBorder(
+                              //   borderRadius: BorderRadius.circular(4),
+                              //   borderSide:
+                              //       BorderSide(color: appUiGreyColor, width: 1),
+                              // ),
                               suffixIcon: IconButton(
                                   onPressed: () {
                                     numberController.clear();
@@ -236,7 +237,7 @@ class _HomePageState extends State<HomePage> {
                               onTap: () {},
                               child: Container(
                                 height: 160,
-                                width: 120,
+                                width: 105,
                                 decoration: BoxDecoration(
                                   color: appUiContainerColor,
                                   borderRadius: BorderRadius.circular(8),
@@ -259,7 +260,7 @@ class _HomePageState extends State<HomePage> {
                                         padding:
                                             const EdgeInsets.only(top: 10.0),
                                         child: Image(
-                                          width: 100,
+                                          width: 80,
                                           height: 100,
                                           image: AssetImage(
                                               "assets/images/img2.png"),
@@ -275,7 +276,7 @@ class _HomePageState extends State<HomePage> {
                               onTap: () {},
                               child: Container(
                                 height: 160,
-                                width: 120,
+                                width: 105,
                                 decoration: BoxDecoration(
                                   color: appUiContainerColor,
                                   borderRadius: BorderRadius.circular(8),
@@ -298,7 +299,7 @@ class _HomePageState extends State<HomePage> {
                                         padding:
                                             const EdgeInsets.only(top: 10.0),
                                         child: Image(
-                                          width: 100,
+                                          width: 80,
                                           height: 100,
                                           image: AssetImage(
                                               "assets/images/img3.png"),
@@ -314,7 +315,7 @@ class _HomePageState extends State<HomePage> {
                               onTap: () {},
                               child: Container(
                                 height: 160,
-                                width: 120,
+                                width: 105,
                                 decoration: BoxDecoration(
                                   color: appUiContainerColor,
                                   borderRadius: BorderRadius.circular(8),
@@ -337,7 +338,7 @@ class _HomePageState extends State<HomePage> {
                                         padding:
                                             const EdgeInsets.only(top: 10.0),
                                         child: Image(
-                                          width: 100,
+                                          width: 80,
                                           height: 100,
                                           image: AssetImage(
                                               "assets/images/img4.png"),
