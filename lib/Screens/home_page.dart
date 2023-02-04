@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:service_app/Screens/Garage/billList_page.dart';
+import 'package:service_app/Screens/Garage/servicesList_page.dart';
 import 'package:service_app/Screens/noVehiclefound_page.dart';
 import 'package:service_app/Screens/search_page.dart';
 import 'package:service_app/Screens/vehicle_page.dart';
@@ -282,7 +284,14 @@ class _HomePageState extends State<HomePage> {
                             ),
                             GestureDetector(
                               behavior: HitTestBehavior.translucent,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ServicesListPage(),
+                                  ),
+                                );
+                              },
                               child: Container(
                                 height: 160,
                                 width: 105,
@@ -321,7 +330,14 @@ class _HomePageState extends State<HomePage> {
                             ),
                             GestureDetector(
                               behavior: HitTestBehavior.translucent,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => BillListPage(),
+                                  ),
+                                );
+                              },
                               child: Container(
                                 height: 160,
                                 width: 105,
