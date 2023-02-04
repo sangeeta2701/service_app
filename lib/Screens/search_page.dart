@@ -21,81 +21,79 @@ class _SearchPageState extends State<SearchPage> {
       backgroundColor: appUiLightColor,
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Column(
-            children: [
-              Container(
-                height: 60,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: appUiThemeColor,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "VA",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: appUiLightColor),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(
-                            Icons.arrow_back,
-                            color: appUiLightColor,
-                            size: 20,
+          child: Form(
+            child: Column(
+              children: [
+                Container(
+                  height: 60,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: appUiThemeColor,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "VA",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: appUiLightColor),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  color: appUiContainerColor,
-                ),
-                child: Center(
-                  child: Text(
-                    "New Service",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: appUiDarkColor),
-                  ),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12),
-                child: Column(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Vehicle No",
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: appUiTextGreyColor),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: Icon(
+                              Icons.arrow_back,
+                              color: appUiLightColor,
+                              size: 20,
+                            ),
+                          ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: SizedBox(
-                            height: 50,
-                            width: double.infinity,
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: appUiContainerColor,
+                  ),
+                  child: Center(
+                    child: Text(
+                      "New Service",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: appUiDarkColor),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 12),
+                  child: Column(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Vehicle No",
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: appUiTextGreyColor),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
                             child: TextFormField(
                               style: TextStyle(
                                   fontSize: 18,
@@ -112,39 +110,31 @@ class _SearchPageState extends State<SearchPage> {
                                     fontWeight: FontWeight.w400),
                                 border: OutlineInputBorder(),
                               ),
-                              // validator: (value) {
-                              //   if (value!.isEmpty) {
-                              //     return "Please Enter Vehicle Number";
-                              //   } else if (!RegExp(
-                              //           r'^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$')
-                              //       .hasMatch(value)) {
-                              //     return "Enter Correct Vehicle Number";
-                              //   } else {
-                              //     return null;
-                              //   }
-                              // },
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "Please Enter Vehicle Number";
+                                } else {
+                                  return null;
+                                }
+                              },
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Model",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: appUiTextGreyColor),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: SizedBox(
-                              height: 50,
-                              width: double.infinity,
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Model",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: appUiTextGreyColor),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
                               child: TextFormField(
                                 style: TextStyle(
                                     fontSize: 18,
@@ -161,40 +151,32 @@ class _SearchPageState extends State<SearchPage> {
                                       fontWeight: FontWeight.w400),
                                   border: OutlineInputBorder(),
                                 ),
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return "Please Enter Vehicle Number";
-                                //   } else if (!RegExp(
-                                //           r'^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$')
-                                //       .hasMatch(value)) {
-                                //     return "Enter Correct Vehicle Number";
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Please Enter Model";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Distance",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: appUiTextGreyColor),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: SizedBox(
-                              height: 50,
-                              width: double.infinity,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Distance",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: appUiTextGreyColor),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
                               child: TextFormField(
                                 style: TextStyle(
                                     fontSize: 18,
@@ -211,40 +193,32 @@ class _SearchPageState extends State<SearchPage> {
                                       fontWeight: FontWeight.w400),
                                   border: OutlineInputBorder(),
                                 ),
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return "Please Enter Vehicle Number";
-                                //   } else if (!RegExp(
-                                //           r'^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$')
-                                //       .hasMatch(value)) {
-                                //     return "Enter Correct Vehicle Number";
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Please Enter Distance";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Service Date",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: appUiTextGreyColor),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: SizedBox(
-                              height: 50,
-                              width: double.infinity,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Service Date",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: appUiTextGreyColor),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
                               child: TextFormField(
                                 controller: _dateController,
                                 style: TextStyle(
@@ -280,70 +254,43 @@ class _SearchPageState extends State<SearchPage> {
                                     });
                                   } else {}
                                 },
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return "Please Enter Vehicle Number";
-                                //   } else if (!RegExp(
-                                //           r'^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$')
-                                //       .hasMatch(value)) {
-                                //     return "Enter Correct Vehicle Number";
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Please Enter Service Date Number";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Container(
-                        height: 50,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: appUiGreyColor, width: 1),
+                          ],
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Service Type :",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    color: appUiDarkColor),
-                              ),
-                              Row(
-                                children: [
-                                  Radio(
-                                      activeColor: appUiThemeColor,
-                                      value: "P/S",
-                                      groupValue: type,
-                                      onChanged: (val) {
-                                        setState(() {
-                                          type = val;
-                                        });
-                                      }),
-                                  Text(
-                                    "P/S",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w400,
-                                        color: appUiDarkColor),
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Row(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Container(
+                          // height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: appUiGreyColor, width: 1),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Service Type :",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w400,
+                                      color: appUiDarkColor),
+                                ),
+                                Row(
                                   children: [
                                     Radio(
                                         activeColor: appUiThemeColor,
-                                        value: "R/R",
+                                        value: "P/S",
                                         groupValue: type,
                                         onChanged: (val) {
                                           setState(() {
@@ -351,7 +298,7 @@ class _SearchPageState extends State<SearchPage> {
                                           });
                                         }),
                                     Text(
-                                      "R/R",
+                                      "P/S",
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400,
@@ -359,29 +306,48 @@ class _SearchPageState extends State<SearchPage> {
                                     )
                                   ],
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0),
+                                  child: Row(
+                                    children: [
+                                      Radio(
+                                          activeColor: appUiThemeColor,
+                                          value: "R/R",
+                                          groupValue: type,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              type = val;
+                                            });
+                                          }),
+                                      Text(
+                                        "R/R",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400,
+                                            color: appUiDarkColor),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Bill No",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: appUiTextGreyColor),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: SizedBox(
-                              height: 50,
-                              width: double.infinity,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Bill No",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: appUiTextGreyColor),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
                               child: TextFormField(
                                 style: TextStyle(
                                     fontSize: 18,
@@ -398,42 +364,34 @@ class _SearchPageState extends State<SearchPage> {
                                       fontWeight: FontWeight.w400),
                                   border: OutlineInputBorder(),
                                 ),
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return "Please Enter Vehicle Number";
-                                //   } else if (!RegExp(
-                                //           r'^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$')
-                                //       .hasMatch(value)) {
-                                //     return "Enter Correct Vehicle Number";
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Please Enter Bill Number";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Amount",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: appUiTextGreyColor),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: SizedBox(
-                                height: 50,
-                                width: double.infinity,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Amount",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: appUiTextGreyColor),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
                                 child: TextFormField(
                                   style: TextStyle(
                                       fontSize: 18,
@@ -450,66 +408,62 @@ class _SearchPageState extends State<SearchPage> {
                                         fontWeight: FontWeight.w400),
                                     border: OutlineInputBorder(),
                                   ),
-                                  // validator: (value) {
-                                  //   if (value!.isEmpty) {
-                                  //     return "Please Enter Vehicle Number";
-                                  //   } else if (!RegExp(
-                                  //           r'^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$')
-                                  //       .hasMatch(value)) {
-                                  //     return "Enter Correct Vehicle Number";
-                                  //   } else {
-                                  //     return null;
-                                  //   }
-                                  // },
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Please Enter Amount ";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0, bottom: 80),
-                      child: Container(
-                        height: 40,
-                        width: double.infinity,
-                        // decoration: BoxDecoration(
-                        //   borderRadius: BorderRadius.circular(8),
-                        //   border: Border.all(color: appUiGreyColor, width: 1),
-                        // ),
-                        child: DottedBorder(
-                          strokeWidth: 2,
-                          color: appUiGreyColor,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Upload Bill",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: appUiTextGreyColor),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 15.0),
-                                  child: Icon(
-                                    Icons.file_upload_outlined,
-                                    color: appUiTextGreyColor,
-                                    size: 18,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0, bottom: 80),
+                        child: Container(
+                          height: 40,
+                          width: double.infinity,
+                          // decoration: BoxDecoration(
+                          //   borderRadius: BorderRadius.circular(8),
+                          //   border: Border.all(color: appUiGreyColor, width: 1),
+                          // ),
+                          child: DottedBorder(
+                            strokeWidth: 2,
+                            color: appUiGreyColor,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Upload Bill",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: appUiTextGreyColor),
                                   ),
-                                )
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15.0),
+                                    child: Icon(
+                                      Icons.file_upload_outlined,
+                                      color: appUiTextGreyColor,
+                                      size: 18,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -4,6 +4,8 @@ import 'package:service_app/Screens/search_page.dart';
 import 'package:service_app/Screens/vehicle_page.dart';
 import 'package:service_app/constants.dart';
 
+import 'Garage/vehicleList_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -145,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
+                        padding: const EdgeInsets.only(top: 20.0),
                         child: GestureDetector(
                           behavior: HitTestBehavior.translucent,
                           onTap: () {
@@ -234,7 +236,14 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             GestureDetector(
                               behavior: HitTestBehavior.translucent,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => VehicleListPage(),
+                                  ),
+                                );
+                              },
                               child: Container(
                                 height: 160,
                                 width: 105,
