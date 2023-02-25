@@ -16,28 +16,29 @@ class VehicleListPage extends StatefulWidget {
 class _VehicleListPageState extends State<VehicleListPage> {
   @override
   void initState() {
+    _getVehicleList();
     super.initState();
   }
 
   List<VehicleListData> vehicleList = [];
-  List<VehicleListData> vehicleNumberList = [];
+  List vehicleNumberList = [];
 
   Future _getVehicleList() async {
     const apiUrl = "http://192.168.1.12:3000/api/vehicles";
     final response = await http.get(
       Uri.parse(apiUrl),
     );
+    // var result = response.body.toString();
     var result = jsonDecode(response.body);
+    // var data = result["vehicles"];
     print(response.body);
     print(response.statusCode);
-
     if (response.statusCode == 200) {
-      setState(() {});
       var _vehicle = vehicleListDataFromJson(result);
-      var _vehicleNo = vehicleListDataFromJson(result);
-
+      print(_vehicle);
+      // var _vehicleNo = vehicleListDataFromJson(result);
       setState(() {
-        vehicleList = _vehicle as List<VehicleListData>;
+        vehicleList = _vehicle;
       });
     } else {
       // ignore: use_build_context_synchronously
@@ -139,12 +140,12 @@ class _VehicleListPageState extends State<VehicleListPage> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-        children: e.vehicles[0].vehicleNo as List<Widget>,
+        children: e.vehicles!.map((veh) => buildVehicle(veh)).toList(),
       ),
     );
   }
 
-  Widget buildVehicle(Map<String, dynamic> veh) {
+  Widget buildVehicle(Map veh) {
     List vNo = [];
     try {
       vNo = List<Map>.from(veh["vehicles"]);
