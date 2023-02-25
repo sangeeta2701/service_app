@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:service_app/constants.dart';
+import 'package:service_app/utils/constants.dart';
 import 'package:http/http.dart' as http;
 
 import '../../model/vehicleListData.dart';

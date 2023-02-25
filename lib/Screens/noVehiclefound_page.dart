@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:service_app/Screens/search_page.dart';
 import 'package:service_app/Screens/vehicle_page.dart';
 
-import '../constants.dart';
+import '../utils/constants.dart';
 
 class NoVehicleFoundPage extends StatefulWidget {
   const NoVehicleFoundPage({Key? key}) : super(key: key);

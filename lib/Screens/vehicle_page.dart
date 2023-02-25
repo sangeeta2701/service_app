@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:service_app/Screens/search_page.dart';
-import 'package:service_app/constants.dart';
+import 'package:service_app/utils/constants.dart';
 
 class VehiclePage extends StatefulWidget {
   const VehiclePage({Key? key, required this.num}) : super(key: key);
