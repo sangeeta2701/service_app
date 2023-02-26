@@ -22,7 +22,7 @@ class _BillListPageState extends State<BillListPage> {
   List<Bill> billList = [];
 
   Future _getBillList() async {
-    const apiUrl = "http://192.168.1.12:3000/api/vehicles";
+    const apiUrl = "http://192.168.1.12:3000/api/bills";
     final response = await http.get(
       Uri.parse(apiUrl),
     );
@@ -55,38 +55,41 @@ class _BillListPageState extends State<BillListPage> {
         children: [
           GarageContents(
               "Bills", "assets/images/img4.png", "Bill No.", "Amount"),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: SizedBox(
-              height: 530,
-              child: ListView.builder(
-                  itemCount: billList.length,
-                  itemBuilder: (context, index) {
-                    Bill data = billList[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "${data.billNumber}",
-                                style: textfieldInputStyle,
-                              ),
-                              Text(
-                                "${data.billAmount}",
-                                style: textfieldInputStyle,
-                              ),
-                            ],
-                          ),
+          SizedBox(
+            height: 530,
+            child: ListView.builder(
+                itemCount: billList.length,
+                itemBuilder: (context, index) {
+                  Bill data = billList[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Container(
+                      height: 50,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom:
+                                  BorderSide(color: appUiGreyColor, width: 1))),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "${data.billNumber}",
+                              style: textfieldInputStyle,
+                            ),
+                            Text(
+                              "Rs. ${data.billAmount}",
+                              style: textfieldInputStyle,
+                            ),
+                          ],
                         ),
                       ),
-                    );
-                  }),
-            ),
+                    ),
+                  );
+                }),
           ),
         ],
       ),

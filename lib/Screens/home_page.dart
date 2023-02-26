@@ -96,44 +96,28 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.only(top: 30.0),
                         child: Text(
                           "Vehicle No.",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: appUiDarkColor),
+                          style: textfieldHeadingStyle,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 12.0),
                         child: TextFormField(
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: appUiDarkColor),
+                          style: textfieldInputStyle,
                           controller: numberController,
                           keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.done,
+                          // textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
                               hintText: "HRXXXX",
-                              hintStyle: TextStyle(
-                                  fontSize: 16,
-                                  color: appUiGreyColor,
-                                  fontWeight: FontWeight.w400),
+                              hintStyle: hintTextStyle,
                               border: OutlineInputBorder(),
-                              // enabledBorder: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.circular(4),
-                              //   borderSide:
-                              //       BorderSide(color: appUiGreyColor, width: 1),
-                              // ),
-                              // focusedBorder: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.circular(4),
-                              //   borderSide:
-                              //       BorderSide(color: appUiGreyColor, width: 1),
-                              // ),
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    numberController.clear();
-                                  },
-                                  icon: Icon(Icons.clear))),
+                              
+                  
+                              // suffixIcon: IconButton(
+                              //     onPressed: () {
+                              //       numberController.clear();
+                              //     },
+                              //     icon: Icon(Icons.clear)),
+                                  ),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Please Enter Vehicle Number";

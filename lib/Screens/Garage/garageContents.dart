@@ -54,7 +54,7 @@ class GarageContents extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
+            padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -100,7 +100,13 @@ class GarageContents extends StatelessWidget {
               ],
             ),
           ),
-          Divider(),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Divider(
+              color: appUiGreyColor,
+              thickness: 1,
+            ),
+          ),
         ],
       ),
     );

@@ -6,6 +6,7 @@ const Color appUiGreyColor = Color.fromRGBO(212, 212, 212, 1);
 const Color appUiThemeColor = Color.fromRGBO(15, 82, 186, 1);
 const Color appUiContainerColor = Color.fromRGBO(235, 235, 235, 0.3);
 const Color appUiTextGreyColor = Color.fromRGBO(149, 149, 149, 1);
+const Color appUiBorderColor = Color.fromRGBO(234, 234, 234, 1);
 
 const TextStyle mainHeadingStyle = TextStyle(
     fontWeight: FontWeight.bold, fontSize: 20, color: appUiLightColor);
