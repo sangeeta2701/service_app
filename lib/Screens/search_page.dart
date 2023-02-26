@@ -1,7 +1,9 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:service_app/utils/constants.dart';
+import 'package:http/http.dart' as http;
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -19,8 +21,43 @@ class _SearchPageState extends State<SearchPage> {
   TextEditingController distanceController = TextEditingController();
   TextEditingController billNumberController = TextEditingController();
   TextEditingController amountController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+
+  //add services
+  var url = "";
+
+  Future<void> _addService() async {
+    const apiUrl = "http://192.168.1.12:3000/api/vehicles/addService";
+    Map<String, dynamic> body = {
+      "vehicleNo": vNumberController.text,
+      "vehicleModel": modelController.text,
+      "customerName": nameController.text,
+      "phoneNumber": phoneNumberController.text,
+      "serviceDate": dateController.text,
+      "serviceType": "RR",
+      "vehicleKm": distanceController.text,
+      "billNumber": billNumberController.text,
+      "billAmount": amountController.text,
+    };
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      body: (body),
+    );
+    print(response.body);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: appUiThemeColor,
+          content: Text("Service Added Successfully!!")));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: appUiThemeColor,
+          content: Text("Something went Wrong")));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,25 +123,24 @@ class _SearchPageState extends State<SearchPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Vehicle No",
+                              "Vehicle Number",
                               style: textfieldHeadingStyle,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: TextFormField(
                                 style: textfieldInputStyle,
-                                // controller: numberController,
+                                controller: vNumberController,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.done,
                                 decoration: InputDecoration(
-                                  hintText: "HR29AD1387",
+                                  hintText: "Enter Vehicle Number",
                                   hintStyle: hintTextStyle,
                                   border: OutlineInputBorder(),
                                 ),
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return "Please Enter Vehicle Number";
-                                    
                                   } else {
                                     return null;
                                   }
@@ -126,11 +162,11 @@ class _SearchPageState extends State<SearchPage> {
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: TextFormField(
                                   style: textfieldInputStyle,
-                                  // controller: numberController,
+                                  controller: modelController,
                                   keyboardType: TextInputType.text,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(
-                                    hintText: "Spark",
+                                    hintText: "Enter Vehicle Model",
                                     hintStyle: hintTextStyle,
                                     border: OutlineInputBorder(),
                                   ),
@@ -159,11 +195,11 @@ class _SearchPageState extends State<SearchPage> {
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: TextFormField(
                                   style: textfieldInputStyle,
-                                  // controller: numberController,
+                                  controller: distanceController,
                                   keyboardType: TextInputType.number,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(
-                                    hintText: "Km",
+                                    hintText: "Enter Distance(Km)",
                                     hintStyle: hintTextStyle,
                                     border: OutlineInputBorder(),
                                   ),
@@ -193,7 +229,6 @@ class _SearchPageState extends State<SearchPage> {
                                 child: TextFormField(
                                   controller: dateController,
                                   style: textfieldInputStyle,
-                                  // controller: numberController,
                                   keyboardType: TextInputType.datetime,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(
@@ -297,18 +332,89 @@ class _SearchPageState extends State<SearchPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Bill No",
+                                "Customer Name",
                                 style: textfieldHeadingStyle,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: TextFormField(
                                   style: textfieldInputStyle,
-                                  // controller: numberController,
+                                  controller: nameController,
                                   keyboardType: TextInputType.number,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(
-                                    hintText: "123",
+                                    hintText: "Enter Name",
+                                    hintStyle: hintTextStyle,
+                                    border: OutlineInputBorder(),
+                                  ),
+                                   validator: (value) {
+                                                                                if (value!.isEmpty) {
+                                                                                  return "Please Enter  Name";
+                                                                                } else if (RegExp(r'/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/').hasMatch(value)) {
+                                                                                  return "Enter Correct Name";
+                                                                                } else {
+                                                                                  return null;
+                                                                                }
+                                                                              },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Phone Number",
+                                style: textfieldHeadingStyle,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: TextFormField(
+                                  inputFormatters: [LengthLimitingTextInputFormatter(10),],
+                                  style: textfieldInputStyle,
+                                  controller: phoneNumberController,
+                                  keyboardType: TextInputType.number,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
+                                    hintText: "Enter Phone Number",
+                                    hintStyle: hintTextStyle,
+                                    border: OutlineInputBorder(),
+                                  ),
+                                  validator: (value) {
+                                                                                if (value!.isEmpty) {
+                                                                                  return "Please Enter Mobile Number";
+                                                                                } else if (!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$').hasMatch(value)) {
+                                                                                  return "Enter Correct Phone Number";
+                                                                                } else {
+                                                                                  return null;
+                                                                                }
+                                                                              },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Bill Number",
+                                style: textfieldHeadingStyle,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: TextFormField(
+                                  style: textfieldInputStyle,
+                                  controller: billNumberController,
+                                  keyboardType: TextInputType.number,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
+                                    hintText: "Enter Bill Number",
                                     hintStyle: hintTextStyle,
                                     border: OutlineInputBorder(),
                                   ),
@@ -336,14 +442,14 @@ class _SearchPageState extends State<SearchPage> {
                                   style: textfieldHeadingStyle,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
+                                  padding: const EdgeInsets.only(top: 8.0,bottom: 150),
                                   child: TextFormField(
                                     style: textfieldInputStyle,
-                                    // controller: numberController,
+                                    controller: amountController,
                                     keyboardType: TextInputType.number,
                                     textInputAction: TextInputAction.done,
                                     decoration: InputDecoration(
-                                      hintText: "4000",
+                                      hintText: "Enter Amount",
                                       hintStyle: hintTextStyle,
                                       border: OutlineInputBorder(),
                                     ),
@@ -360,42 +466,7 @@ class _SearchPageState extends State<SearchPage> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 12.0, bottom: 80),
-                          child: Container(
-                            height: 40,
-                            width: double.infinity,
-                            // decoration: BoxDecoration(
-                            //   borderRadius: BorderRadius.circular(8),
-                            //   border: Border.all(color: appUiGreyColor, width: 1),
-                            // ),
-                            child: DottedBorder(
-                              strokeWidth: 2,
-                              color: appUiGreyColor,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Upload Bill",
-                                      style: textfieldHeadingStyle,
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 15.0),
-                                      child: Icon(
-                                        Icons.file_upload_outlined,
-                                        color: appUiTextGreyColor,
-                                        size: 18,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                       
                       ],
                     ),
                   ),
@@ -405,7 +476,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: SizedBox(
         height: 60,
         width: double.infinity,
@@ -414,11 +485,9 @@ class _SearchPageState extends State<SearchPage> {
           child: FloatingActionButton(
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Data Saved successfully!!")));
+                _addService();
               } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Something went wrong!!")));
+                Center(child: CircularProgressIndicator());
               }
             },
             backgroundColor: appUiThemeColor,
