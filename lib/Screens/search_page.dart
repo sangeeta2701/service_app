@@ -39,10 +39,7 @@ class _SearchPageState extends State<SearchPage> {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "VA",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: appUiLightColor),
+                            style: mainHeadingStyle,
                           ),
                         ),
                         Align(
@@ -68,13 +65,7 @@ class _SearchPageState extends State<SearchPage> {
                     color: appUiContainerColor,
                   ),
                   child: Center(
-                    child: Text(
-                      "New Service",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: appUiDarkColor),
-                    ),
+                    child: Text("New Service", style: blackHeadingStyle),
                   ),
                 ),
                 Padding(
@@ -87,27 +78,18 @@ class _SearchPageState extends State<SearchPage> {
                         children: [
                           Text(
                             "Vehicle No",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: appUiTextGreyColor),
+                            style: textfieldHeadingStyle,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: TextFormField(
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  color: appUiDarkColor),
+                              style: textfieldInputStyle,
                               // controller: numberController,
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.done,
                               decoration: InputDecoration(
                                 hintText: "HR29AD1387",
-                                hintStyle: TextStyle(
-                                    fontSize: 16,
-                                    color: appUiTextGreyColor,
-                                    fontWeight: FontWeight.w400),
+                                hintStyle: hintTextStyle,
                                 border: OutlineInputBorder(),
                               ),
                               validator: (value) {
@@ -128,27 +110,18 @@ class _SearchPageState extends State<SearchPage> {
                           children: [
                             Text(
                               "Model",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: appUiTextGreyColor),
+                              style: textfieldHeadingStyle,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: TextFormField(
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    color: appUiDarkColor),
+                                style: textfieldInputStyle,
                                 // controller: numberController,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.done,
                                 decoration: InputDecoration(
                                   hintText: "Spark",
-                                  hintStyle: TextStyle(
-                                      fontSize: 16,
-                                      color: appUiTextGreyColor,
-                                      fontWeight: FontWeight.w400),
+                                  hintStyle: hintTextStyle,
                                   border: OutlineInputBorder(),
                                 ),
                                 validator: (value) {
@@ -170,27 +143,18 @@ class _SearchPageState extends State<SearchPage> {
                           children: [
                             Text(
                               "Distance",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: appUiTextGreyColor),
+                              style: textfieldHeadingStyle,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: TextFormField(
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    color: appUiDarkColor),
+                                style: textfieldInputStyle,
                                 // controller: numberController,
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.done,
                                 decoration: InputDecoration(
                                   hintText: "Km",
-                                  hintStyle: TextStyle(
-                                      fontSize: 16,
-                                      color: appUiTextGreyColor,
-                                      fontWeight: FontWeight.w400),
+                                  hintStyle: hintTextStyle,
                                   border: OutlineInputBorder(),
                                 ),
                                 validator: (value) {
@@ -212,28 +176,19 @@ class _SearchPageState extends State<SearchPage> {
                           children: [
                             Text(
                               "Service Date",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: appUiTextGreyColor),
+                              style: textfieldHeadingStyle,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: TextFormField(
                                 controller: _dateController,
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    color: appUiDarkColor),
+                                style: textfieldInputStyle,
                                 // controller: numberController,
                                 keyboardType: TextInputType.datetime,
                                 textInputAction: TextInputAction.done,
                                 decoration: InputDecoration(
                                   hintText: "yyyy-mm-dd",
-                                  hintStyle: TextStyle(
-                                      fontSize: 16,
-                                      color: appUiTextGreyColor,
-                                      fontWeight: FontWeight.w400),
+                                  hintStyle: hintTextStyle,
                                   border: OutlineInputBorder(),
                                 ),
                                 onTap: () async {
@@ -281,10 +236,7 @@ class _SearchPageState extends State<SearchPage> {
                               children: [
                                 Text(
                                   "Service Type :",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400,
-                                      color: appUiDarkColor),
+                                  style: textfieldHeadingStyle,
                                 ),
                                 Row(
                                   children: [
@@ -299,10 +251,7 @@ class _SearchPageState extends State<SearchPage> {
                                         }),
                                     Text(
                                       "P/S",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w400,
-                                          color: appUiDarkColor),
+                                      style: textfieldInputStyle,
                                     )
                                   ],
                                 ),
@@ -321,10 +270,7 @@ class _SearchPageState extends State<SearchPage> {
                                           }),
                                       Text(
                                         "R/R",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w400,
-                                            color: appUiDarkColor),
+                                        style: textfieldInputStyle,
                                       )
                                     ],
                                   ),
@@ -341,27 +287,18 @@ class _SearchPageState extends State<SearchPage> {
                           children: [
                             Text(
                               "Bill No",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: appUiTextGreyColor),
+                              style: textfieldHeadingStyle,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: TextFormField(
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    color: appUiDarkColor),
+                                style: textfieldInputStyle,
                                 // controller: numberController,
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.done,
                                 decoration: InputDecoration(
                                   hintText: "123",
-                                  hintStyle: TextStyle(
-                                      fontSize: 16,
-                                      color: appUiTextGreyColor,
-                                      fontWeight: FontWeight.w400),
+                                  hintStyle: hintTextStyle,
                                   border: OutlineInputBorder(),
                                 ),
                                 validator: (value) {
@@ -385,27 +322,18 @@ class _SearchPageState extends State<SearchPage> {
                             children: [
                               Text(
                                 "Amount",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: appUiTextGreyColor),
+                                style: textfieldHeadingStyle,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: TextFormField(
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400,
-                                      color: appUiDarkColor),
+                                  style: textfieldInputStyle,
                                   // controller: numberController,
                                   keyboardType: TextInputType.number,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(
                                     hintText: "4000",
-                                    hintStyle: TextStyle(
-                                        fontSize: 16,
-                                        color: appUiTextGreyColor,
-                                        fontWeight: FontWeight.w400),
+                                    hintStyle: hintTextStyle,
                                     border: OutlineInputBorder(),
                                   ),
                                   validator: (value) {
@@ -440,10 +368,7 @@ class _SearchPageState extends State<SearchPage> {
                                 children: [
                                   Text(
                                     "Upload Bill",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: appUiTextGreyColor),
+                                    style: textfieldHeadingStyle,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 15.0),

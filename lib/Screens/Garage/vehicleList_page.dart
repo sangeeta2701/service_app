@@ -20,7 +20,7 @@ class _VehicleListPageState extends State<VehicleListPage> {
     super.initState();
   }
 
-  List<VehicleListData> vehicleList = [];
+  List<Vehicle> vehicleList = [];
   List vehicleNumberList = [];
 
   Future _getVehicleList() async {
@@ -28,8 +28,8 @@ class _VehicleListPageState extends State<VehicleListPage> {
     final response = await http.get(
       Uri.parse(apiUrl),
     );
-    // var result = response.body.toString();
-    var result = jsonDecode(response.body);
+    var result = response.body.toString();
+    // var result = jsonDecode(response.body);
     // var data = result["vehicles"];
     print(response.body);
     print(response.statusCode);
@@ -38,7 +38,7 @@ class _VehicleListPageState extends State<VehicleListPage> {
       print(_vehicle);
       // var _vehicleNo = vehicleListDataFromJson(result);
       setState(() {
-        vehicleList = _vehicle;
+        vehicleList = _vehicle.vehicles!;
       });
     } else {
       // ignore: use_build_context_synchronously
@@ -73,10 +73,7 @@ class _VehicleListPageState extends State<VehicleListPage> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "VA",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: appUiLightColor),
+                        style: mainHeadingStyle,
                       ),
                     ),
                     Align(
@@ -103,10 +100,7 @@ class _VehicleListPageState extends State<VehicleListPage> {
                 children: [
                   Text(
                     "Vehicles",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: appUiDarkColor),
+                    style: blackHeadingStyle,
                   ),
                   Image(
                     width: 40,
@@ -123,10 +117,25 @@ class _VehicleListPageState extends State<VehicleListPage> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
-              child: ListView(
-                shrinkWrap: true,
-                children:
-                    vehicleList.map((e) => buildVehicleNumber(e)).toList(),
+              child: SizedBox(
+                height: 400,
+                child: ListView.builder(
+                    itemCount: vehicleList.length,
+                    itemBuilder: (context, index) {
+                      Vehicle data = vehicleList[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              "${data.vehicleNo}",
+                              style: textfieldInputStyle,
+                            ),
+                            Divider(),
+                          ],
+                        ),
+                      );
+                    }),
               ),
             ),
             Divider(),
@@ -136,24 +145,24 @@ class _VehicleListPageState extends State<VehicleListPage> {
     );
   }
 
-  Widget buildVehicleNumber(VehicleListData e) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: e.vehicles!.map((veh) => buildVehicle(veh)).toList(),
-      ),
-    );
-  }
-
-  Widget buildVehicle(Map veh) {
-    List vNo = [];
-    try {
-      vNo = List<Map>.from(veh["vehicles"]);
-    } catch (e) {}
-    return Text(
-      veh["vehicleNo"],
-      style: TextStyle(
-          fontWeight: FontWeight.w500, color: appUiTextGreyColor, fontSize: 16),
-    );
-  }
+  // Widget buildVehicleNumber(VehicleListData e) {
+  //   return Padding(
+  //     padding: const EdgeInsets.all(8.0),
+  //     child: Column(
+  //       children: e.vehicles!.map((veh) => buildVehicle(veh)).toList(),
+  //     ),
+  //   );
+  // }
+  //
+  // Widget buildVehicle(Map veh) {
+  //   List vNo = [];
+  //   try {
+  //     vNo = List<Map>.from(veh["vehicles"]);
+  //   } catch (e) {}
+  //   return Text(
+  //     veh["vehicleNo"],
+  //     style: TextStyle(
+  //         fontWeight: FontWeight.w500, color: appUiTextGreyColor, fontSize: 16),
+  //   );
+  // }
 }
