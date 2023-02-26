@@ -1,10 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:service_app/utils/constants.dart';
 import 'package:http/http.dart' as http;
 
 import '../../model/vehicleListData.dart';
+import 'garageContents.dart';
 
 class VehicleListPage extends StatefulWidget {
   const VehicleListPage({Key? key}) : super(key: key);
@@ -21,7 +20,6 @@ class _VehicleListPageState extends State<VehicleListPage> {
   }
 
   List<Vehicle> vehicleList = [];
-  List vehicleNumberList = [];
 
   Future _getVehicleList() async {
     const apiUrl = "http://192.168.1.12:3000/api/vehicles";
@@ -29,14 +27,12 @@ class _VehicleListPageState extends State<VehicleListPage> {
       Uri.parse(apiUrl),
     );
     var result = response.body.toString();
-    // var result = jsonDecode(response.body);
-    // var data = result["vehicles"];
+
     print(response.body);
     print(response.statusCode);
     if (response.statusCode == 200) {
       var _vehicle = vehicleListDataFromJson(result);
       print(_vehicle);
-      // var _vehicleNo = vehicleListDataFromJson(result);
       setState(() {
         vehicleList = _vehicle.vehicles!;
       });
@@ -58,87 +54,41 @@ class _VehicleListPageState extends State<VehicleListPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 60,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: appUiThemeColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "VA",
-                        style: mainHeadingStyle,
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: appUiLightColor,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            GarageContents(
+                "Vehicles", "assets/images/img2.png", "Number", "Model"),
             Padding(
-              padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Vehicles",
-                    style: blackHeadingStyle,
-                  ),
-                  Image(
-                    width: 40,
-                    height: 40,
-                    image: AssetImage("assets/images/img3.png"),
-                    fit: BoxFit.cover,
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              color: appUiGreyColor,
-              thickness: 1,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: SizedBox(
-                height: 400,
+                height: 530,
                 child: ListView.builder(
                     itemCount: vehicleList.length,
                     itemBuilder: (context, index) {
                       Vehicle data = vehicleList[index];
                       return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              "${data.vehicleNo}",
-                              style: textfieldInputStyle,
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "${data.vehicleNo}",
+                                  style: textfieldInputStyle,
+                                ),
+                                Text(
+                                  "${data.vehicleModel}",
+                                  style: textfieldInputStyle,
+                                ),
+                              ],
                             ),
-                            Divider(),
-                          ],
+                          ),
                         ),
                       );
                     }),
               ),
             ),
-            Divider(),
           ],
         ),
       ),

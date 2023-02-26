@@ -5,8 +5,9 @@ import '../../utils/constants.dart';
 class GarageContents extends StatelessWidget {
   String name;
   String img;
-  String txt;
-  GarageContents(this.name, this.img, this.txt);
+  String vkey;
+  String value;
+  GarageContents(this.name, this.img, this.vkey, this.value);
 
   @override
   Widget build(BuildContext context) {
@@ -79,12 +80,24 @@ class GarageContents extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
-            child: Text(
-              txt,
-              style: TextStyle(
-                  color: appUiDarkColor,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  vkey,
+                  style: TextStyle(
+                      color: appUiDarkColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  value,
+                  style: TextStyle(
+                      color: appUiDarkColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
           ),
           Divider(),

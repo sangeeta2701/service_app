@@ -15,7 +15,7 @@ class _ServicesListPageState extends State<ServicesListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appUiLightColor,
-      body: GarageContents("Services", "assets/images/img3.png", "Services"),
+      // body: GarageContents("Services", "assets/images/img3.png", "Services"),
     );
   }
 }

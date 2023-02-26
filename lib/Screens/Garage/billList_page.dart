@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../model/billListData.dart';
 import '../../utils/constants.dart';
 import 'garageContents.dart';
+import 'package:http/http.dart' as http;
 
 class BillListPage extends StatefulWidget {
   const BillListPage({Key? key}) : super(key: key);
@@ -12,10 +14,82 @@ class BillListPage extends StatefulWidget {
 
 class _BillListPageState extends State<BillListPage> {
   @override
+  void initState() {
+    _getBillList();
+    super.initState();
+  }
+
+  List<Bill> billList = [];
+
+  Future _getBillList() async {
+    const apiUrl = "http://192.168.1.12:3000/api/vehicles";
+    final response = await http.get(
+      Uri.parse(apiUrl),
+    );
+    var result = response.body.toString();
+
+    print(response.body);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      var _bill = billListDataFromJson(result);
+      print(_bill);
+      setState(() {
+        billList = _bill.bills!;
+      });
+    } else {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("No Data Found"),
+        ),
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appUiLightColor,
-      body: GarageContents("Bills", "assets/images/img4.png", "Amount"),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GarageContents(
+              "Bills", "assets/images/img4.png", "Bill No.", "Amount"),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: SizedBox(
+              height: 530,
+              child: ListView.builder(
+                  itemCount: billList.length,
+                  itemBuilder: (context, index) {
+                    Bill data = billList[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "${data.billNumber}",
+                                style: textfieldInputStyle,
+                              ),
+                              Text(
+                                "${data.billAmount}",
+                                style: textfieldInputStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
