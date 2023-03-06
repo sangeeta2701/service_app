@@ -1,4 +1,3 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -27,10 +26,10 @@ class _SearchPageState extends State<SearchPage> {
   final formKey = GlobalKey<FormState>();
 
   //add services
-  var url = "";
 
   Future<void> _addService() async {
-    const apiUrl = "http://192.168.1.12:3000/api/vehicles/addService";
+    // const apiUrl = "http://192.168.1.12:3000/api/vehicles/addService";
+    const apiUrl = "https://va-api-render.onrender.com/api/vehicles/addService";
     Map<String, dynamic> body = {
       "vehicleNo": vNumberController.text,
       "vehicleModel": modelController.text,
@@ -347,15 +346,17 @@ class _SearchPageState extends State<SearchPage> {
                                     hintStyle: hintTextStyle,
                                     border: OutlineInputBorder(),
                                   ),
-                                   validator: (value) {
-                                                                                if (value!.isEmpty) {
-                                                                                  return "Please Enter  Name";
-                                                                                } else if (RegExp(r'/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/').hasMatch(value)) {
-                                                                                  return "Enter Correct Name";
-                                                                                } else {
-                                                                                  return null;
-                                                                                }
-                                                                              },
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Please Enter  Name";
+                                    } else if (RegExp(
+                                            r'/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/')
+                                        .hasMatch(value)) {
+                                      return "Enter Correct Name";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
                                 ),
                               ),
                             ],
@@ -373,7 +374,9 @@ class _SearchPageState extends State<SearchPage> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: TextFormField(
-                                  inputFormatters: [LengthLimitingTextInputFormatter(10),],
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(10),
+                                  ],
                                   style: textfieldInputStyle,
                                   controller: phoneNumberController,
                                   keyboardType: TextInputType.number,
@@ -384,14 +387,16 @@ class _SearchPageState extends State<SearchPage> {
                                     border: OutlineInputBorder(),
                                   ),
                                   validator: (value) {
-                                                                                if (value!.isEmpty) {
-                                                                                  return "Please Enter Mobile Number";
-                                                                                } else if (!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$').hasMatch(value)) {
-                                                                                  return "Enter Correct Phone Number";
-                                                                                } else {
-                                                                                  return null;
-                                                                                }
-                                                                              },
+                                    if (value!.isEmpty) {
+                                      return "Please Enter Mobile Number";
+                                    } else if (!RegExp(
+                                            r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
+                                        .hasMatch(value)) {
+                                      return "Enter Correct Phone Number";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
                                 ),
                               ),
                             ],
@@ -442,7 +447,8 @@ class _SearchPageState extends State<SearchPage> {
                                   style: textfieldHeadingStyle,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 8.0,bottom: 150),
+                                  padding: const EdgeInsets.only(
+                                      top: 8.0, bottom: 150),
                                   child: TextFormField(
                                     style: textfieldInputStyle,
                                     controller: amountController,
@@ -466,7 +472,6 @@ class _SearchPageState extends State<SearchPage> {
                             ),
                           ),
                         ),
-                       
                       ],
                     ),
                   ),

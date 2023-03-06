@@ -22,7 +22,7 @@ class _BillListPageState extends State<BillListPage> {
   List<Bill> billList = [];
 
   Future _getBillList() async {
-    const apiUrl = "http://192.168.1.12:3000/api/bills";
+    const apiUrl = "https://va-api-render.onrender.com/api/bills";
     final response = await http.get(
       Uri.parse(apiUrl),
     );
@@ -57,7 +57,7 @@ class _BillListPageState extends State<BillListPage> {
               "Bills", "assets/images/img4.png", "Bill No.", "Amount"),
           SizedBox(
             height: 530,
-            child: ListView.builder(
+            child:billList.isEmpty?Center(child: CircularProgressIndicator(),) : ListView.builder(
                 itemCount: billList.length,
                 itemBuilder: (context, index) {
                   Bill data = billList[index];

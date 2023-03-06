@@ -1,39 +1,34 @@
 // To parse this JSON data, do
 //
-//     final vehicleServiceListData = vehicleServiceListDataFromJson(jsonString);
+//     final vehiclesServiceListData = vehiclesServiceListDataFromJson(jsonString);
 
 import 'dart:convert';
 
-VehicleServiceListData vehicleServiceListDataFromJson(String str) => VehicleServiceListData.fromJson(json.decode(str));
+VehiclesServiceListData vehiclesServiceListDataFromJson(String str) => VehiclesServiceListData.fromJson(json.decode(str));
 
-String vehicleServiceListDataToJson(VehicleServiceListData data) => json.encode(data.toJson());
+String vehiclesServiceListDataToJson(VehiclesServiceListData data) => json.encode(data.toJson());
 
-class VehicleServiceListData {
-    VehicleServiceListData({
+class VehiclesServiceListData {
+    VehiclesServiceListData({
         this.success,
         this.vehicle,
         this.services,
-        this.bills,
     });
 
     bool? success;
     Vehicle? vehicle;
     List<Service>? services;
-    Bill? bills;
 
-
-    factory VehicleServiceListData.fromJson(Map<String, dynamic> json) => VehicleServiceListData(
+    factory VehiclesServiceListData.fromJson(Map<String, dynamic> json) => VehiclesServiceListData(
         success: json["success"],
         vehicle: Vehicle.fromJson(json["vehicle"]),
         services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
-        bills: Bill.fromJson(json["bill"]),
     );
 
     Map<String, dynamic> toJson() => {
         "success": success,
         "vehicle": vehicle!.toJson(),
         "services": List<dynamic>.from(services!.map((x) => x.toJson())),
-        "bill": vehicle!.toJson(),
     };
 }
 
@@ -77,10 +72,10 @@ class Service {
         vehicleKm: json["vehicleKm"],
         serviceId: json["serviceId"],
         vehicle: json["vehicle"],
-        bill: Bill.fromJson(json["bill"]),
+        bill: json["bill"] == null?Bill():Bill.fromJson(json["bill"]),
         serviceTotal: json["serviceTotal"],
-        createdAt: json["createdAt"],
-        updatedAt:json["updatedAt"],
+        createdAt:json["createdAt"],
+        updatedAt: json["updatedAt"],
         v: json["__v"],
     );
 
@@ -115,18 +110,18 @@ class Bill {
     String? id;
     int? billNumber;
     String? billAmount;
-    DateTime? billDate;
-    DateTime? createdAt;
-    DateTime? updatedAt;
+    String? billDate;
+    String? createdAt;
+    String? updatedAt;
     int? v;
 
     factory Bill.fromJson(Map<String, dynamic> json) => Bill(
         id: json["_id"],
         billNumber: json["billNumber"],
         billAmount: json["billAmount"],
-        billDate: DateTime.parse(json["billDate"]),
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
+        billDate:json["billDate"],
+        createdAt: json["createdAt"],
+        updatedAt: json["updatedAt"],
         v: json["__v"],
     );
 

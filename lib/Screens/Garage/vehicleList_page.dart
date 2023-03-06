@@ -22,7 +22,7 @@ class _VehicleListPageState extends State<VehicleListPage> {
   List<Vehicle> vehicleList = [];
 
   Future _getVehicleList() async {
-    const apiUrl = "http://192.168.1.12:3000/api/vehicles";
+    const apiUrl = "https://va-api-render.onrender.com/api/vehicles";
     final response = await http.get(
       Uri.parse(apiUrl),
     );
@@ -57,8 +57,8 @@ class _VehicleListPageState extends State<VehicleListPage> {
             GarageContents(
                 "Vehicles", "assets/images/img2.png", "Number", "Model"),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-              child: SizedBox(
+              padding: const EdgeInsets.only(top:10),
+              child: vehicleList.isEmpty?Center(child: CircularProgressIndicator(),) : SizedBox(
                 height: 530,
                 child: ListView.builder(
                     itemCount: vehicleList.length,
