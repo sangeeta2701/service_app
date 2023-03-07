@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../model/ServicesData.dart';
 import '../../utils/constants.dart';
@@ -50,92 +51,95 @@ class _ServicesListPageState extends State<ServicesListPage> {
     return Scaffold(
       backgroundColor: appUiLightColor,
       // body: GarageContents("Services", "assets/images/img3.png", "",""),
-      body: SafeArea(
-          child: Column(children: [
-        Container(
-          height: 60,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: appUiThemeColor,
+      body: SingleChildScrollView(
+        child: SafeArea(
+            child: Column(children: [
+          Container(
+            height: 60,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: appUiThemeColor,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "VA",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: appUiLightColor),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: appUiLightColor,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "VA",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: appUiLightColor),
-                  ),
+                Text(
+                  "Services",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: appUiDarkColor),
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: appUiLightColor,
-                      size: 20,
-                    ),
-                  ),
+                Image(
+                  width: 40,
+                  height: 40,
+                  image: AssetImage("assets/images/img3.png"),
+                  fit: BoxFit.cover,
                 ),
               ],
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Services",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: appUiDarkColor),
-              ),
-              Image(
-                width: 40,
-                height: 40,
-                image: AssetImage("assets/images/img3.png"),
-                fit: BoxFit.cover,
-              ),
-            ],
-          ),
-        ),
-        Divider(),
-        Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: serviceList.length == 0
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : SizedBox(
-                    height: 530,
-                    child: ListView.builder(
-                        itemCount: serviceList.length,
-                        itemBuilder: (context, index) {
-                          // Service data = serviceList[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: serviceContainer(index),
-                          );
-                        }),
-                  ))
-      ])),
+          Divider(),
+          Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: serviceList.length == 0
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : SizedBox(
+                      height: 600,
+                      child: ListView.builder(
+                          itemCount: serviceList.length,
+                          itemBuilder: (context, index) {
+                            // Service data = serviceList[index];
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: serviceContainer(index),
+                            );
+                          }),
+                    ))
+        ])),
+      ),
     );
   }
 
   Widget serviceContainer(int index) {
     MyService data = serviceList[index];
+    DateTime? date = DateTime.tryParse(data.serviceDate!);
     return Container(
       constraints: BoxConstraints(
           // minHeight: 100,
@@ -160,18 +164,24 @@ class _ServicesListPageState extends State<ServicesListPage> {
                       "${data.serviceId}",
                       style: blackHeadingStyle,
                     ),
-                    Text(
-                        // " P/S- ",
-                        "${data.serviceType}",
-                        style: blackHeadingStyle),
-                    Text(
-                      "${data.vehicleKm}Km",
-                      style: hintTextStyle,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                          // " P/S- ",
+                          "${data.serviceType}",
+                          style: blackHeadingStyle),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        "${data.vehicleKm}Km",
+                        style: hintTextStyle,
+                      ),
                     ),
                   ],
                 ),
                 Text(
-                  "${data.serviceDate}",
+                  DateFormat.yMd().format(date!),
                   style: hintTextStyle,
                 ),
               ],
