@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:service_app/Screens/search_page.dart';
 import 'package:service_app/model/vehiclesServiceListData.dart';
 import 'package:service_app/utils/constants.dart';
@@ -34,7 +35,7 @@ class _VehiclePageState extends State<VehiclePage> {
     print(response.body);
     print(response.statusCode);
     if (response.statusCode == 200) {
-      print("abc");
+     
       VehiclesServiceListData _service =
           vehiclesServiceListDataFromJson(result);
       print("Response ${_service}");
@@ -196,6 +197,8 @@ class _VehiclePageState extends State<VehiclePage> {
   }
 
   SizedBox serviceListContainer() {
+    
+
     return SizedBox(
       height: 500,
       child: serviceList.length == 0
@@ -204,6 +207,7 @@ class _VehiclePageState extends State<VehiclePage> {
               itemCount: serviceList.length,
               itemBuilder: (context, index) {
                 Service data = serviceList[index];
+                DateTime? date = DateTime.tryParse(data.serviceDate!);
                 return Padding(
                   padding: const EdgeInsets.only(top: 15.0),
                   child: Container(
@@ -226,30 +230,36 @@ class _VehiclePageState extends State<VehiclePage> {
                               Row(
                                 children: [
                                   Text(
-                                    "${data.serviceDate}",
+                                    "${data.serviceId}",
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,
                                         color: appUiDarkColor),
                                   ),
-                                  Text(
-                                    " P/S- ",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: appUiDarkColor),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left:8.0),
+                                    child: Text(
+                                      "${data.serviceType}",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: appUiDarkColor),
+                                    ),
                                   ),
-                                  Text(
-                                    "${data.vehicleKm}",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        color: appUiTextGreyColor),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left:8.0),
+                                    child: Text(
+                                      "${data.vehicleKm}",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          color: appUiTextGreyColor),
+                                    ),
                                   ),
                                 ],
                               ),
                               Text(
-                                "${data.serviceDate}",
+                                DateFormat.yMd().format(date!),
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,

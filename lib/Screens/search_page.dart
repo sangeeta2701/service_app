@@ -12,7 +12,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  String? type;
+  String selectedValue = "type";
 
   TextEditingController dateController = TextEditingController();
   TextEditingController vNumberController = TextEditingController();
@@ -36,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
       "customerName": nameController.text,
       "phoneNumber": phoneNumberController.text,
       "serviceDate": dateController.text,
-      "serviceType": "RR",
+      "serviceType": selectedValue,
       "vehicleKm": distanceController.text,
       "billNumber": billNumberController.text,
       "billAmount": amountController.text,
@@ -288,10 +288,10 @@ class _SearchPageState extends State<SearchPage> {
                                       Radio(
                                           activeColor: appUiThemeColor,
                                           value: "P/S",
-                                          groupValue: type,
+                                          groupValue: selectedValue,
                                           onChanged: (val) {
                                             setState(() {
-                                              type = val;
+                                              selectedValue = "P/S";
                                             });
                                           }),
                                       Text(
@@ -307,10 +307,10 @@ class _SearchPageState extends State<SearchPage> {
                                         Radio(
                                             activeColor: appUiThemeColor,
                                             value: "R/R",
-                                            groupValue: type,
+                                            groupValue: selectedValue,
                                             onChanged: (val) {
                                               setState(() {
-                                                type = val;
+                                                selectedValue = "R/R";
                                               });
                                             }),
                                         Text(
@@ -390,7 +390,7 @@ class _SearchPageState extends State<SearchPage> {
                                     if (value!.isEmpty) {
                                       return "Please Enter Mobile Number";
                                     } else if (!RegExp(
-                                            r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
+                                            r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$')
                                         .hasMatch(value)) {
                                       return "Enter Correct Phone Number";
                                     } else {
