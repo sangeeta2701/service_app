@@ -39,6 +39,12 @@ dependencies:
   dotted_border: ^2.0.0+3
   intl: ^0.18.0
   http: ^0.13.5
+  provider: ^6.0.5
+  retrofit: ^4.0.1
+  dio: ^5.1.1
+  build_runner: ^2.3.3
+  retrofit_generator: ^6.0.0+1
+  built_value_generator: ^8.4.4
 
 
 dev_dependencies:
