@@ -29,7 +29,7 @@ class _SearchPageState extends State<SearchPage> {
 
   Future<void> _addService() async {
     // const apiUrl = "http://192.168.1.12:3000/api/vehicles/addService";
-    const apiUrl = "https://va-api-render.onrender.com/api/vehicles/addService";
+    const apiUrl = "https://gifted-pike-visor.cyclic.app/api/vehicles/addService";
     Map<String, dynamic> body = {
       "vehicleNo": vNumberController.text,
       "vehicleModel": modelController.text,

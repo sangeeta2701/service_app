@@ -22,7 +22,7 @@ class _ServicesListPageState extends State<ServicesListPage> {
   List<MyService> serviceList = [];
 
   Future<void> _getServiceList() async {
-    var apiUrl = "https://va-api-render.onrender.com/api/services";
+    var apiUrl = "https://gifted-pike-visor.cyclic.app/api/services";
     final response = await http.get(
       Uri.parse(apiUrl),
     );
@@ -143,7 +143,7 @@ class _ServicesListPageState extends State<ServicesListPage> {
     return Container(
       constraints: BoxConstraints(
           // minHeight: 100,
-          maxHeight: 150,
+          maxHeight: 190,
           maxWidth: double.infinity),
       decoration: BoxDecoration(
         border: Border.all(color: appUiGreyColor, width: 1),
@@ -157,22 +157,27 @@ class _ServicesListPageState extends State<ServicesListPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      // "AV356",
-                      "${data.serviceId}",
-                      style: blackHeadingStyle,
+                    Row(
+                      children: [
+                        Text(
+                          // "AV356",
+                          "${data.serviceId}",
+                          style: blackHeadingStyle,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                              // " P/S- ",
+                              "${data.serviceType}",
+                              style: blackHeadingStyle),
+                        ),
+                      ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                          // " P/S- ",
-                          "${data.serviceType}",
-                          style: blackHeadingStyle),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
                         "${data.vehicleKm}Km",
                         style: hintTextStyle,

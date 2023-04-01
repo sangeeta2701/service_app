@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "../../api/api_url.dart";
 
 import '../../model/billListData.dart';
 import '../../utils/constants.dart';
@@ -22,7 +23,7 @@ class _BillListPageState extends State<BillListPage> {
   List<Bill> billList = [];
 
   Future _getBillList() async {
-    const apiUrl = "https://va-api-render.onrender.com/api/bills";
+    const apiUrl = "https://gifted-pike-visor.cyclic.app/api/bills";
     final response = await http.get(
       Uri.parse(apiUrl),
     );
@@ -37,7 +38,7 @@ class _BillListPageState extends State<BillListPage> {
         billList = _bill.bills!;
       });
     } else {
-     
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("No Data Found"),
@@ -50,48 +51,55 @@ class _BillListPageState extends State<BillListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appUiLightColor,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GarageContents(
-              "Bills", "assets/images/img4.png", "Bill No.", "Amount"),
-          SizedBox(
-            height: 530,
-            child:billList.isEmpty?Center(child: CircularProgressIndicator(),) : ListView.builder(
-                itemCount: billList.length,
-                itemBuilder: (context, index) {
-                  Bill data = billList[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Container(
-                      height: 50,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom:
-                                  BorderSide(color: appUiGreyColor, width: 1))),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "${data.billNumber}",
-                              style: textfieldInputStyle,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GarageContents(
+                "Bills", "assets/images/img4.png", "Bill No.", "Amount"),
+            SizedBox(
+              height: 530,
+              child: billList.isEmpty
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : ListView.builder(
+                      itemCount: billList.length,
+                      itemBuilder: (context, index) {
+                        Bill data = billList[index];
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Container(
+                            height: 50,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: appUiGreyColor, width: 1))),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 15),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "${data.billNumber}",
+                                    style: textfieldInputStyle,
+                                  ),
+                                  Text(
+                                    "Rs. ${data.billAmount}",
+                                    style: textfieldInputStyle,
+                                  ),
+                                ],
+                              ),
                             ),
-                            Text(
-                              "Rs. ${data.billAmount}",
-                              style: textfieldInputStyle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-          ),
-        ],
+                          ),
+                        );
+                      }),
+            ),
+          ],
+        ),
       ),
     );
   }

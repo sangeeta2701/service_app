@@ -22,7 +22,7 @@ class _VehicleListPageState extends State<VehicleListPage> {
   List<Vehicle> vehicleList = [];
 
   Future _getVehicleList() async {
-    const apiUrl = "https://va-api-render.onrender.com/api/vehicles";
+    const apiUrl = "https://gifted-pike-visor.cyclic.app/api/vehicles";
     final response = await http.get(
       Uri.parse(apiUrl),
     );
@@ -50,46 +50,53 @@ class _VehicleListPageState extends State<VehicleListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appUiLightColor,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GarageContents(
-                "Vehicles", "assets/images/img2.png", "Number", "Model"),
-            Padding(
-              padding: const EdgeInsets.only(top:10),
-              child: vehicleList.isEmpty?Center(child: CircularProgressIndicator(),) : SizedBox(
-                height: 530,
-                child: ListView.builder(
-                    itemCount: vehicleList.length,
-                    itemBuilder: (context, index) {
-                      Vehicle data = vehicleList[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 15),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "${data.vehicleNo}",
-                                  style: textfieldInputStyle,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GarageContents(
+                  "Vehicles", "assets/images/img2.png", "Number", "Model"),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: vehicleList.isEmpty
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : SizedBox(
+                        height: 530,
+                        child: ListView.builder(
+                            itemCount: vehicleList.length,
+                            itemBuilder: (context, index) {
+                              Vehicle data = vehicleList[index];
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Card(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0, horizontal: 15),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${data.vehicleNo}",
+                                          style: textfieldInputStyle,
+                                        ),
+                                        Text(
+                                          "${data.vehicleModel}",
+                                          style: textfieldInputStyle,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                                Text(
-                                  "${data.vehicleModel}",
-                                  style: textfieldInputStyle,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
+                              );
+                            }),
+                      ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

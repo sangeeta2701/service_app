@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:service_app/Screens/search_page.dart';
 import 'package:service_app/model/vehiclesServiceListData.dart';
 import 'package:service_app/utils/constants.dart';
 import 'package:http/http.dart' as http;
-
 
 class VehiclePage extends StatefulWidget {
   const VehiclePage({Key? key, required this.num}) : super(key: key);
@@ -25,7 +23,8 @@ class _VehiclePageState extends State<VehiclePage> {
   // List<Vehicle> vehicleeList = [];
 
   Future<void> _getVehicleServiceList() async {
-    var apiUrl = "https://va-api-render.onrender.com/api/services/${widget.num}";
+    var apiUrl =
+        "https://gifted-pike-visor.cyclic.app/api/services/${widget.num}";
     // apiUrl = "$apiUrl?vehicleNo=${widget.num}";
     final response = await http.get(
       Uri.parse(apiUrl),
@@ -35,7 +34,6 @@ class _VehiclePageState extends State<VehiclePage> {
     print(response.body);
     print(response.statusCode);
     if (response.statusCode == 200) {
-     
       VehiclesServiceListData _service =
           vehiclesServiceListDataFromJson(result);
       print("Response ${_service}");
@@ -197,8 +195,6 @@ class _VehiclePageState extends State<VehiclePage> {
   }
 
   SizedBox serviceListContainer() {
-    
-
     return SizedBox(
       height: 500,
       child: serviceList.length == 0
@@ -213,7 +209,7 @@ class _VehiclePageState extends State<VehiclePage> {
                   child: Container(
                     constraints: BoxConstraints(
                         // minHeight: 100,
-                        maxHeight: 150,
+                        maxHeight: 190,
                         maxWidth: double.infinity),
                     decoration: BoxDecoration(
                       border: Border.all(color: appUiGreyColor, width: 1),
@@ -237,7 +233,7 @@ class _VehiclePageState extends State<VehiclePage> {
                                         color: appUiDarkColor),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left:8.0),
+                                    padding: const EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "${data.serviceType}",
                                       style: TextStyle(
@@ -247,7 +243,7 @@ class _VehiclePageState extends State<VehiclePage> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left:8.0),
+                                    padding: const EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "${data.vehicleKm}",
                                       style: TextStyle(

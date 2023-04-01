@@ -107,25 +107,26 @@ class _HomePageState extends State<HomePage> {
                           keyboardType: TextInputType.text,
                           // textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
-                              hintText: "HRXXXX",
-                              hintStyle: hintTextStyle,
-                              border: OutlineInputBorder(),
-                              
-                  
-                              // suffixIcon: IconButton(
-                              //     onPressed: () {
-                              //       numberController.clear();
-                              //     },
-                              //     icon: Icon(Icons.clear)),
-                                  ),
+                            hintText: "HRXXXX",
+                            hintStyle: hintTextStyle,
+                            border: OutlineInputBorder(),
+
+                            // suffixIcon: IconButton(
+                            //     onPressed: () {
+                            //       numberController.clear();
+                            //     },
+                            //     icon: Icon(Icons.clear)),
+                          ),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Please Enter Vehicle Number";
-                            } else if (!RegExp(
-                                    r'^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$')
-                                .hasMatch(value)) {
-                              return "Enter Correct Vehicle Number";
-                            } else {
+                            }
+                            // else if (!RegExp(
+                            //         r'^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$')
+                            //     .hasMatch(value)) {
+                            //   return "Enter Correct Vehicle Number";
+                            // }
+                            else {
                               return null;
                             }
                           },
@@ -136,13 +137,15 @@ class _HomePageState extends State<HomePage> {
                         child: GestureDetector(
                           behavior: HitTestBehavior.translucent,
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    VehiclePage(num: numberController.text),
-                              ),
-                            );
+                            if (formKey.currentState!.validate()) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      VehiclePage(num: numberController.text),
+                                ),
+                              );
+                            }
                             // Navigator.push(
                             //   context,
                             //   MaterialPageRoute(
