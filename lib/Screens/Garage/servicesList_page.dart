@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:service_app/provider/service_provider.dart';
 
 import '../../model/ServicesData.dart';
 import '../../utils/constants.dart';
@@ -16,41 +18,14 @@ class ServicesListPage extends StatefulWidget {
 class _ServicesListPageState extends State<ServicesListPage> {
   @override
   void initState() {
-    _getServiceList();
-  }
-
-  List<MyService> serviceList = [];
-
-  Future<void> _getServiceList() async {
-    var apiUrl = "https://gifted-pike-visor.cyclic.app/api/services";
-    final response = await http.get(
-      Uri.parse(apiUrl),
-    );
-    var result = response.body;
-
-    print(response.body);
-    print(response.statusCode);
-    if (response.statusCode == 200) {
-      var _service = servicesDataFromJson(result);
-      print(_service);
-      setState(() {
-        serviceList = _service.services!;
-      });
-    } else {
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("No Vehicles Found"),
-        ),
-      );
-    }
+    Provider.of<ServiceProvider>(context, listen: false).fetchServicesList();
   }
 
   @override
   Widget build(BuildContext context) {
+    final serviceProvider = Provider.of<ServiceProvider>(context);
     return Scaffold(
       backgroundColor: appUiLightColor,
-      // body: GarageContents("Services", "assets/images/img3.png", "",""),
       body: SingleChildScrollView(
         child: SafeArea(
             child: Column(children: [
@@ -116,19 +91,18 @@ class _ServicesListPageState extends State<ServicesListPage> {
           Divider(),
           Padding(
               padding: const EdgeInsets.only(top: 10),
-              child: serviceList.length == 0
+              child: serviceProvider.serviceCount == 0
                   ? Center(
                       child: CircularProgressIndicator(),
                     )
                   : SizedBox(
                       height: 600,
                       child: ListView.builder(
-                          itemCount: serviceList.length,
+                          itemCount: serviceProvider.serviceCount,
                           itemBuilder: (context, index) {
-                            // Service data = serviceList[index];
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 8.0),
-                              child: serviceContainer(index),
+                              child: serviceContainer(index, serviceProvider),
                             );
                           }),
                     ))
@@ -137,8 +111,8 @@ class _ServicesListPageState extends State<ServicesListPage> {
     );
   }
 
-  Widget serviceContainer(int index) {
-    MyService data = serviceList[index];
+  Widget serviceContainer(int index, ServiceProvider provider) {
+    MyService data = provider.getServiceList[index];
     DateTime? date = DateTime.tryParse(data.serviceDate!);
     return Container(
       constraints: BoxConstraints(
