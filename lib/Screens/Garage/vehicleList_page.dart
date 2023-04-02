@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:service_app/Screens/vehicle_page.dart';
 import 'package:service_app/provider/vehicle_provider.dart';
 import 'package:service_app/utils/constants.dart';
 import 'package:http/http.dart' as http;
@@ -44,26 +45,34 @@ class _VehicleListPageState extends State<VehicleListPage> {
                         child: ListView.builder(
                             itemCount: vehicleProvider.vehicleListCount,
                             itemBuilder: (context, index) {
-                              Vehicle data = vehicleProvider.getVehicleList[index];
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Card(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 8.0, horizontal: 15),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "${data.vehicleNo}",
-                                          style: textfieldInputStyle,
-                                        ),
-                                        Text(
-                                          "${data.vehicleModel}",
-                                          style: textfieldInputStyle,
-                                        ),
-                                      ],
+                              Vehicle data =
+                                  vehicleProvider.getVehicleList[index];
+                              return GestureDetector(
+                                onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => VehiclePage(
+                                            vehicleNo: data.vehicleNo!))),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 15),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "${data.vehicleNo}",
+                                            style: textfieldInputStyle,
+                                          ),
+                                          Text(
+                                            "${data.vehicleModel}",
+                                            style: textfieldInputStyle,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

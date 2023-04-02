@@ -86,6 +86,7 @@ class _NoVehicleFoundPageState extends State<NoVehicleFoundPage> {
                       ),
                     ),
                   ),
+                 
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
                     child: Container(
@@ -106,6 +107,8 @@ class _NoVehicleFoundPageState extends State<NoVehicleFoundPage> {
                       ),
                     ),
                   ),
+                  
+                  
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
                     child: GestureDetector(

@@ -19,4 +19,7 @@ abstract class ApiClient{
 
   @GET("/bills")
   Future<String> fetchBillListApi();
+
+  @GET("/services/{vehicleno}")
+  Future<String> fetchVehicleServices(@Path("vehicleno") String vehicleNo);
 }
