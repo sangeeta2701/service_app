@@ -24,21 +24,21 @@ class _BillListPageState extends State<BillListPage> {
   @override
   Widget build(BuildContext context) {
     final billProvider = Provider.of<BillProvider>(context);
-    return Scaffold(
-      backgroundColor: appUiLightColor,
-      body: SingleChildScrollView(
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: appUiLightColor,
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GarageContents(
                 "Bills", "assets/images/img4.png", "Bill No.", "Amount"),
-            SizedBox(
-              height: 530,
+            Expanded(
               child: billProvider.billListCount == 0
                   ? Center(
                       child: CircularProgressIndicator(),
                     )
                   : ListView.builder(
+                    padding: EdgeInsets.zero,
                       itemCount: billProvider.billListCount,
                       itemBuilder: (context, index) {
                         Bill data = billProvider.getBillList[index];
