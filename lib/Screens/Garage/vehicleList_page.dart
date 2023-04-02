@@ -27,14 +27,14 @@ class _VehicleListPageState extends State<VehicleListPage> {
     final vehicleProvider = Provider.of<VehicleProvider>(context);
     return Scaffold(
       backgroundColor: appUiLightColor,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GarageContents(
-                  "Vehicles", "assets/images/img2.png", "Number", "Model"),
-              Padding(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GarageContents(
+                "Vehicles", "assets/images/img2.png", "Number", "Model"),
+            Expanded(
+              child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: vehicleProvider.vehicleListCount == 0
                     ? Center(
@@ -80,8 +80,8 @@ class _VehicleListPageState extends State<VehicleListPage> {
                             }),
                       ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
