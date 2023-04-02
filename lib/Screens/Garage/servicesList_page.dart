@@ -26,70 +26,69 @@ class _ServicesListPageState extends State<ServicesListPage> {
     final serviceProvider = Provider.of<ServiceProvider>(context);
     return Scaffold(
       backgroundColor: appUiLightColor,
-      body: SingleChildScrollView(
-        child: SafeArea(
-            child: Column(children: [
-          Container(
-            height: 60,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: appUiThemeColor,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "VA",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: appUiLightColor),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: appUiLightColor,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+      body: SafeArea(
+          child: Column(children: [
+        Container(
+          height: 60,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: appUiThemeColor,
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Services",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: appUiDarkColor),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "VA",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: appUiLightColor),
+                  ),
                 ),
-                Image(
-                  width: 40,
-                  height: 40,
-                  image: AssetImage("assets/images/img3.png"),
-                  fit: BoxFit.cover,
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: appUiLightColor,
+                      size: 20,
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-          Divider(),
-          Padding(
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Services",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: appUiDarkColor),
+              ),
+              Image(
+                width: 40,
+                height: 40,
+                image: AssetImage("assets/images/img3.png"),
+                fit: BoxFit.cover,
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: serviceProvider.serviceCount == 0
                   ? Center(
@@ -105,9 +104,9 @@ class _ServicesListPageState extends State<ServicesListPage> {
                               child: serviceContainer(index, serviceProvider),
                             );
                           }),
-                    ))
-        ])),
-      ),
+                    )),
+        )
+      ])),
     );
   }
 
