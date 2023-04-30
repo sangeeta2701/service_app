@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:service_app/Screens/vehicle_page.dart';
+import 'package:service_app/provider/vehicle_provider.dart';
 import 'package:service_app/utils/constants.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,79 +18,61 @@ class VehicleListPage extends StatefulWidget {
 class _VehicleListPageState extends State<VehicleListPage> {
   @override
   void initState() {
-    _getVehicleList();
+    Provider.of<VehicleProvider>(context, listen: false).fetchVehicleList();
     super.initState();
-  }
-
-  List<Vehicle> vehicleList = [];
-
-  Future _getVehicleList() async {
-    const apiUrl = "https://gifted-pike-visor.cyclic.app/api/vehicles";
-    final response = await http.get(
-      Uri.parse(apiUrl),
-    );
-    var result = response.body.toString();
-
-    print(response.body);
-    print(response.statusCode);
-    if (response.statusCode == 200) {
-      var _vehicle = vehicleListDataFromJson(result);
-      print(_vehicle);
-      setState(() {
-        vehicleList = _vehicle.vehicles!;
-      });
-    } else {
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("No Vehicles Found"),
-        ),
-      );
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final vehicleProvider = Provider.of<VehicleProvider>(context);
     return Scaffold(
       backgroundColor: appUiLightColor,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GarageContents(
-                  "Vehicles", "assets/images/img2.png", "Number", "Model"),
-              Padding(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GarageContents(
+                "Vehicles", "assets/images/img2.png", "Number", "Model"),
+            Expanded(
+              child: Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: vehicleList.isEmpty
+                child: vehicleProvider.vehicleListCount == 0
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
                     : SizedBox(
                         height: 530,
                         child: ListView.builder(
-                            itemCount: vehicleList.length,
+                            itemCount: vehicleProvider.vehicleListCount,
                             itemBuilder: (context, index) {
-                              Vehicle data = vehicleList[index];
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Card(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 8.0, horizontal: 15),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "${data.vehicleNo}",
-                                          style: textfieldInputStyle,
-                                        ),
-                                        Text(
-                                          "${data.vehicleModel}",
-                                          style: textfieldInputStyle,
-                                        ),
-                                      ],
+                              Vehicle data =
+                                  vehicleProvider.getVehicleList[index];
+                              return GestureDetector(
+                                onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => VehiclePage(
+                                            vehicleNo: data.vehicleNo!))),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 15),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "${data.vehicleNo}",
+                                            style: textfieldInputStyle,
+                                          ),
+                                          Text(
+                                            "${data.vehicleModel}",
+                                            style: textfieldInputStyle,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -95,31 +80,10 @@ class _VehicleListPageState extends State<VehicleListPage> {
                             }),
                       ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
-
-  // Widget buildVehicleNumber(VehicleListData e) {
-  //   return Padding(
-  //     padding: const EdgeInsets.all(8.0),
-  //     child: Column(
-  //       children: e.vehicles!.map((veh) => buildVehicle(veh)).toList(),
-  //     ),
-  //   );
-  // }
-  //
-  // Widget buildVehicle(Map veh) {
-  //   List vNo = [];
-  //   try {
-  //     vNo = List<Map>.from(veh["vehicles"]);
-  //   } catch (e) {}
-  //   return Text(
-  //     veh["vehicleNo"],
-  //     style: TextStyle(
-  //         fontWeight: FontWeight.w500, color: appUiTextGreyColor, fontSize: 16),
-  //   );
-  // }
 }

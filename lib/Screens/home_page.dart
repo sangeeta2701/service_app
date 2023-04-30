@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      VehiclePage(num: numberController.text),
+                                      VehiclePage(vehicleNo: numberController.text),
                                 ),
                               );
                             }

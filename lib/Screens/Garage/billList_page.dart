@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import "../../api/api_url.dart";
+import 'package:provider/provider.dart';
+import 'package:service_app/provider/bill_provider.dart';
 
 import '../../model/billListData.dart';
 import '../../utils/constants.dart';
 import 'garageContents.dart';
-import 'package:http/http.dart' as http;
 
 class BillListPage extends StatefulWidget {
   const BillListPage({Key? key}) : super(key: key);
@@ -16,57 +16,32 @@ class BillListPage extends StatefulWidget {
 class _BillListPageState extends State<BillListPage> {
   @override
   void initState() {
-    _getBillList();
+   // _getBillList();
+   Provider.of<BillProvider>(context, listen: false).fetchBillList();
     super.initState();
-  }
-
-  List<Bill> billList = [];
-
-  Future _getBillList() async {
-    const apiUrl = "https://gifted-pike-visor.cyclic.app/api/bills";
-    final response = await http.get(
-      Uri.parse(apiUrl),
-    );
-    var result = response.body.toString();
-
-    print(response.body);
-    print(response.statusCode);
-    if (response.statusCode == 200) {
-      var _bill = billListDataFromJson(result);
-      print(_bill);
-      setState(() {
-        billList = _bill.bills!;
-      });
-    } else {
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("No Data Found"),
-        ),
-      );
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: appUiLightColor,
-      body: SingleChildScrollView(
-        child: Column(
+    final billProvider = Provider.of<BillProvider>(context);
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: appUiLightColor,
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GarageContents(
                 "Bills", "assets/images/img4.png", "Bill No.", "Amount"),
-            SizedBox(
-              height: 530,
-              child: billList.isEmpty
+            Expanded(
+              child: billProvider.billListCount == 0
                   ? Center(
                       child: CircularProgressIndicator(),
                     )
                   : ListView.builder(
-                      itemCount: billList.length,
+                    padding: EdgeInsets.zero,
+                      itemCount: billProvider.billListCount,
                       itemBuilder: (context, index) {
-                        Bill data = billList[index];
+                        Bill data = billProvider.getBillList[index];
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Container(
