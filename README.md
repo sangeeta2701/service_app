@@ -1,16 +1,10 @@
 # service_app
 
-A new Flutter project.
+Fully functional flutter app for vehicle servicing..
 
-## Getting Started
+## Output
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+![s1](https://github.com/sangeeta2701/service_app/assets/86039068/14366129-aff5-4d96-85a1-f55cd01f70ec)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![s2](https://github.com/sangeeta2701/service_app/assets/86039068/f7db3f76-4ca8-44d5-b318-63f5272070f9)
