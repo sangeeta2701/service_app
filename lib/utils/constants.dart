@@ -17,7 +17,7 @@ const TextStyle textfieldHeadingStyle = TextStyle(
     fontSize: 14, fontWeight: FontWeight.w500, color: appUiTextGreyColor);
 
 const TextStyle textfieldInputStyle =
-    TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: appUiDarkColor);
+    TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: appUiDarkColor);
 
 const TextStyle hintTextStyle = TextStyle(
-    fontSize: 16, color: appUiTextGreyColor, fontWeight: FontWeight.w400);
+    fontSize: 12, color: appUiTextGreyColor, fontWeight: FontWeight.w400);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:service_app/Screens/Garage/billList_page.dart';
 import 'package:service_app/Screens/Garage/servicesList_page.dart';
 // import 'package:service_app/Screens/noVehiclefound_page.dart';
-import 'package:service_app/Screens/search_page.dart';
+import 'package:service_app/Screens/addService_page.dart';
 import 'package:service_app/Screens/vehicle_page.dart';
 import 'package:service_app/utils/constants.dart';
 import 'Garage/vehicleList_page.dart';

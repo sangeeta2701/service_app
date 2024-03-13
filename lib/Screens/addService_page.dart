@@ -29,7 +29,8 @@ class _SearchPageState extends State<SearchPage> {
 
   Future<void> _addService() async {
     // const apiUrl = "http://192.168.1.12:3000/api/vehicles/addService";
-    const apiUrl = "https://gifted-pike-visor.cyclic.app/api/vehicles/addService";
+    const apiUrl =
+        "https://gifted-pike-visor.cyclic.app/api/vehicles/addService";
     Map<String, dynamic> body = {
       "vehicleNo": vNumberController.text,
       "vehicleModel": modelController.text,
@@ -128,11 +129,13 @@ class _SearchPageState extends State<SearchPage> {
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: TextFormField(
+                                
                                 style: textfieldInputStyle,
                                 controller: vNumberController,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.done,
                                 decoration: InputDecoration(
+                                  isDense: true,
                                   hintText: "Enter Vehicle Number",
                                   hintStyle: hintTextStyle,
                                   border: OutlineInputBorder(),
@@ -165,6 +168,7 @@ class _SearchPageState extends State<SearchPage> {
                                   keyboardType: TextInputType.text,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(
+                                     isDense: true,
                                     hintText: "Enter Vehicle Model",
                                     hintStyle: hintTextStyle,
                                     border: OutlineInputBorder(),
@@ -231,6 +235,7 @@ class _SearchPageState extends State<SearchPage> {
                                   keyboardType: TextInputType.datetime,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(
+                                     isDense: true,
                                     hintText: "yyyy-mm-dd",
                                     hintStyle: hintTextStyle,
                                     border: OutlineInputBorder(),
@@ -276,7 +281,7 @@ class _SearchPageState extends State<SearchPage> {
                                   Border.all(color: appUiGreyColor, width: 1),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 4),
                               child: Row(
                                 children: [
                                   Text(
@@ -339,9 +344,10 @@ class _SearchPageState extends State<SearchPage> {
                                 child: TextFormField(
                                   style: textfieldInputStyle,
                                   controller: nameController,
-                                  keyboardType: TextInputType.number,
+                                  keyboardType: TextInputType.text,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(
+                                     isDense: true,
                                     hintText: "Enter Name",
                                     hintStyle: hintTextStyle,
                                     border: OutlineInputBorder(),
@@ -376,12 +382,14 @@ class _SearchPageState extends State<SearchPage> {
                                 child: TextFormField(
                                   inputFormatters: [
                                     LengthLimitingTextInputFormatter(10),
+                                    
                                   ],
                                   style: textfieldInputStyle,
                                   controller: phoneNumberController,
                                   keyboardType: TextInputType.number,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(
+                                     isDense: true,
                                     hintText: "Enter Phone Number",
                                     hintStyle: hintTextStyle,
                                     border: OutlineInputBorder(),
@@ -419,6 +427,7 @@ class _SearchPageState extends State<SearchPage> {
                                   keyboardType: TextInputType.number,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(
+                                     isDense: true,
                                     hintText: "Enter Bill Number",
                                     hintStyle: hintTextStyle,
                                     border: OutlineInputBorder(),
@@ -455,6 +464,7 @@ class _SearchPageState extends State<SearchPage> {
                                     keyboardType: TextInputType.number,
                                     textInputAction: TextInputAction.done,
                                     decoration: InputDecoration(
+                                       isDense: true,
                                       hintText: "Enter Amount",
                                       hintStyle: hintTextStyle,
                                       border: OutlineInputBorder(),
